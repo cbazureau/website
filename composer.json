@@ -1,0 +1,14 @@
+{
+    "name": "cbazureau/website",
+    "description": "Personal Website",
+    "require": {
+        "twig/twig": "^1.20"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Cédric Bazureau",
+            "email": "no-mail@bazureau.com"
+        }
+    ]
+}
