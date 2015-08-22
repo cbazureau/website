@@ -19,8 +19,13 @@ Récupération du composer.phar
 curl -sS https://getcomposer.org/installer | php
 ```
 Installation des dépendances composer
+- Méthode 1 : sans gulp
 ```
 php composer.phar install
+```
+- Méthode 2 : avec gulp
+```
+gulp composer
 ```
 
 ### Gulp
@@ -35,7 +40,7 @@ npm install
 ```
 Puis à chaque build
 ```
-gulp build
+gulp full-build // ou build pour ne pas rebuild composer
 ```
 
 

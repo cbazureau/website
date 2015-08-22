@@ -7,9 +7,11 @@ var runSequence = require('run-sequence');
 var del = require('del');
 var imagemin = require('gulp-imagemin');
 var pngquant = require('imagemin-pngquant');
+var composer = require('gulp-composer');
 var SRC_DIR = "./www/cedric/src";
 var BUILD_DIR = "./www/cedric/dist";
 var timeInMs = Date.now();
+
 
 // Build CSS (concat, minify  & copy to build)
 gulp.task('build-css', function() {
@@ -72,4 +74,16 @@ gulp.task('build', function(callback) {
               ['build-css', 'build-js','build-fonts','build-img'],
               'build-html',
               callback);
+});
+
+// Full-Build
+gulp.task('full-build', function(callback) {
+  runSequence('composer',
+              'build',
+              callback);
+});
+
+// Composer
+gulp.task('composer', function () {
+    return composer({bin:"php composer.phar"});
 });
