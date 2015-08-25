@@ -1,0 +1,22 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "homepage": "https://github.com/cbazureau/website",
+  "authors": [
+    "Cedric Bazureau <cedric.bazureau@canal-plus.com>"
+  ],
+  "description": "Personal Website",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "www/cedric/src/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "skel": "https://github.com/n33/skel.old.git",
+    "jquery": "1.11.1"
+  }
+}

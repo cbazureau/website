@@ -8,14 +8,19 @@ var del = require('del');
 var imagemin = require('gulp-imagemin');
 var pngquant = require('imagemin-pngquant');
 var composer = require('gulp-composer');
+var bower = require('gulp-bower');
 var SRC_DIR = "./www/cedric/src";
 var BUILD_DIR = "./www/cedric/dist";
 var timeInMs = Date.now();
 
+gulp.task('bower', function() {
+  return bower()
+    .pipe(gulp.dest(SRC_DIR+'/components'))
+});
 
 // Build CSS (concat, minify  & copy to build)
 gulp.task('build-css', function() {
-  return gulp.src(SRC_DIR+'/css/*.css')
+  return gulp.src([SRC_DIR+'/css/*.css',SRC_DIR+'/components/skel/dist/*.css'])
     .pipe(concat('style.'+timeInMs+'.min.css'))
     .pipe(minifyCss())
     .pipe(gulp.dest(BUILD_DIR+'/css'));
@@ -39,10 +44,10 @@ gulp.task('build-fonts', function() {
 
 // Build Js (concat, uglify & copy to build)
 gulp.task('build-js', function() {
-  return gulp.src([SRC_DIR+'/js/jquery.min.js',
+  return gulp.src([SRC_DIR+'/components/jquery/dist/jquery.min.js',
                   SRC_DIR+'/js/jquery.*.min.js',
-                  SRC_DIR+'/js/skel.min.js',
-                  SRC_DIR+'/js/skel-*.min.js',
+                  SRC_DIR+'/components/skel/dist/skel.min.js',
+                  SRC_DIR+'/components/skel/dist/skel-*.min.js',
                   SRC_DIR+'/js/init.js'
                 ])
     .pipe(concat('script.'+timeInMs+'.min.js'))
@@ -68,18 +73,39 @@ gulp.task('build-clean', function (cb) {
   ], cb);
 });
 
-// Build
-gulp.task('build', function(callback) {
+// Clean composer folder
+gulp.task('build-clean-composer', function (cb) {
+  del([
+    SRC_DIR+'/components/**/*',
+    // we don't want to clean this file though so we negate the pattern
+    '!'+BUILD_DIR+'/.gitignore'
+  ], cb);
+});
+
+// Clean vendor folder
+gulp.task('build-clean-vendor', function (cb) {
+  del([
+    './vendor/**/*',
+    // we don't want to clean this file though so we negate the pattern
+    '!'+BUILD_DIR+'/.gitignore'
+  ], cb);
+});
+
+// build-light
+gulp.task('build-light', function(callback) {
   runSequence('build-clean',
               ['build-css', 'build-js','build-fonts','build-img'],
               'build-html',
               callback);
 });
 
-// Full-Build
-gulp.task('full-build', function(callback) {
-  runSequence('composer',
-              'build',
+// build
+gulp.task('build', function(callback) {
+  runSequence('build-clean-vendor',
+              'composer',
+              'build-clean-composer',
+              'bower',
+              'build-light',
               callback);
 });
 
