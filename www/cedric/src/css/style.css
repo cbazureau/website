@@ -1426,6 +1426,24 @@
 		#cta .formerize-placeholder {
 			color: rgba(255, 255, 255, 0.75) !important;
 		}
+		
+/* Blog */		
+.blog-post-content>p:first-child:first-letter{
+	font-size:4em;
+	float:left;
+	font-family: "georgia";
+	margin:0px 10px 0px 0px;
+	line-height:1;
+	color:#656159;
+}
+.blog-post-content{
+	text-align:justify;
+	font-size:1.2em;
+}
+.blog-post-details {
+	background-color:red;
+}
+
 /* Basic */
 @media only screen and (max-width: 1680px) {
 	body, input, select, textarea {
