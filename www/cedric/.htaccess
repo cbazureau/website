@@ -1,3 +1,9 @@
+RewriteEngine On
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+
 ##### GZIP Compression
 # Commenter la ligne ci-dessous si plantage
 # php_flag zlib.output_compression on
