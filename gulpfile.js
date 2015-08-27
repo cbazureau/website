@@ -27,7 +27,7 @@ gulp.task('build-css', function() {
 });
 
 gulp.task('build-img', function () {
-    return gulp.src(SRC_DIR+'/img/*.*')
+    return gulp.src(SRC_DIR+'/img/**/*.*')
         .pipe(imagemin({
             progressive: true,
             svgoPlugins: [{removeViewBox: false}],

@@ -1427,9 +1427,19 @@
 			color: rgba(255, 255, 255, 0.75) !important;
 		}
 		
-/* Blog */		
+/* Blog */
+.blog-post h2 {
+	margin-bottom:2px;
+}	
+.blog-post-date {
+	font-size:1.1em;
+	color:#999;
+	display:block;float:left;width:8em;
+	margin-top:2px;
+	
+}		
 .blog-post-content>p:first-child:first-letter{
-	font-size:4em;
+	font-size:3em;
 	float:left;
 	font-family: "georgia";
 	margin:0px 10px 0px 0px;
@@ -1438,10 +1448,14 @@
 }
 .blog-post-content{
 	text-align:justify;
+	clear:both;
 	font-size:1.2em;
+	margin-top:3em;
 }
-.blog-post-details {
-	background-color:red;
+.blog-post-details ul {display:block;float:left;margin:0px;padding:0px}
+.blog-post-details ul li { display:block;float:left;margin:0px 3px 0px 3px;font-size:0.9em;
+	background-color:#656159;border-radius:5px;color:#fff;padding:2px 5px;font-weight:bold;
+	
 }
 
 /* Basic */
