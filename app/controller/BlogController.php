@@ -4,6 +4,7 @@
  * Controlleur blog
  * @package website
  */
+namespace controller;
 class BlogController
 {
 	/**

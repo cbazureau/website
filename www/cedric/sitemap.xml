@@ -4,7 +4,12 @@
   xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url> 
     <loc>http://cedric.bazureau.com/</loc> 
-    <lastmod>2015-08-25</lastmod>
+    <lastmod>2015-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url> 
+    <loc>http://cedric.bazureau.com/cv</loc> 
+    <lastmod>2015-09-20</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 </urlset>

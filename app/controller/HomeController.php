@@ -4,6 +4,7 @@
  * Controlleur home
  * @package website
  */
+namespace controller;
 class HomeController
 {
 	/**

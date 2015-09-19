@@ -4,6 +4,7 @@
  * Controlleur error
  * @package website
  */
+namespace controller;
 class ErrorController
 {
 	const ERR_404 = "404";
@@ -18,7 +19,7 @@ class ErrorController
 	{
 		$ihm =  \core\IHM::getInstance();
 		$ihm->log->Debug("[".__METHOD__."] Debut de fonction");
-		
+		header("HTTP/1.0 404 Not Found");
 		return $ihm->twig->loadTemplate('error.html')->render(array());
 	}
 

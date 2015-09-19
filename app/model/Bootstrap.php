@@ -53,7 +53,7 @@ class Bootstrap
 		} else if (preg_match('/\.(jpg|gif|png) *$/i', $ihm->uri, $matches)) {
 			// Image en 404
 			$ihm->get["controller"] = "error";
-			$ihm->get["error"] = ErrorController::ERR_404_IMG;
+			$ihm->get["error"] = \controller\ErrorController::ERR_404_IMG;
 			$return = false;
 		} else if (preg_match('^/(.*)^', $ihm->uri, $matches)) {
 			if(isset($matches[1])) {
@@ -64,13 +64,13 @@ class Bootstrap
 			} else {
 				// Controller non-identifié
 				$ihm->get["controller"] = "error";
-				$ihm->get["error"] = ErrorController::ERR_404;
+				$ihm->get["error"] = \controller\ErrorController::ERR_404;
 				$return = false;
 			}
 		} else {
 			// Controller non-identifié
 			$ihm->get["controller"] = "error";
-			$ihm->get["error"] = ErrorController::ERR_404;
+			$ihm->get["error"] = \controller\ErrorController::ERR_404;
 			$return = false;
 		}
 		
@@ -100,16 +100,22 @@ class Bootstrap
 		// --------------------------------------------
 		// Switch qui détermine le controller
 		// --------------------------------------------
-		$class = ucfirst($ihm->get["controller"])."Controller";
+		$class = "\\controller\\".ucfirst($ihm->get["controller"])."Controller";
 		$method = "main";
 		$function = $class."::".$method;
 		$ihm->log->Debug("[".__METHOD__."] On cherche le controleur : ".$function);
 		
-		if(method_exists($class,$method) && is_callable($function)) {
-			$return = call_user_func($function);
-		} else {
-			$ihm->get["error"] = ErrorController::ERR_404_CONTROLLER;
-			$return = ErrorController::main();
+		try {
+			if(method_exists($class,$method) && is_callable($function)) {
+				$return = call_user_func($function);
+			} else {
+				$ihm->get["error"] = \controller\ErrorController::ERR_404_CONTROLLER;
+				$return = \controller\ErrorController::main();
+			}
+		}
+		catch (\Exception $e) {
+			$ihm->get["error"] = \controller\ErrorController::ERR_404_CONTROLLER;
+			$return = \controller\ErrorController::main();
 		}
 		
 		// --------------------------------------------
@@ -131,17 +137,16 @@ class Bootstrap
 				"core\\IHM" => "app/model/IHM.php",
 				"core\\Log" => "app/model/Log.php"
 		);
-		
 		if(isset($matrice[$classname]) 
 			&& file_exists(BASE_APP.$matrice[$classname])) {
 			$claspath = BASE_APP.$matrice[$classname];
 			require_once($claspath);
 		} else if(strpos($classname,"Controller")!==false 
-					&& file_exists(BASE_APP."app/controller/".$classname.".php")) {
-			$claspath = BASE_APP."app/controller/".$classname.".php";
+					&& file_exists(BASE_APP."app/controller/".str_replace("controller\\","",$classname).".php")) {
+			$claspath = BASE_APP."app/controller/".str_replace("controller\\","",$classname).".php";
 			require_once($claspath);
 		} else {
-			die("Problème d'installation : Classe ".$classname." non trouvée");
+			throw new \Exception("Problème d'installation : Classe ".$classname." non trouvée");
 		}
 		
 	}
