@@ -20,7 +20,9 @@ gulp.task('bower', function() {
 
 // Build CSS (concat, minify  & copy to build)
 gulp.task('build-css', function() {
-  return gulp.src([SRC_DIR+'/components/skel/dist/*.css',SRC_DIR+'/css/*.css'])
+  return gulp.src([SRC_DIR+'/components/fontawesome/css/*.min.css',
+                    SRC_DIR+'/components/skel/dist/*.css',
+                    SRC_DIR+'/css/*.css'])
     .pipe(concat('style.'+timeInMs+'.min.css'))
     .pipe(minifyCss())
     .pipe(gulp.dest(BUILD_DIR+'/css'));
@@ -38,7 +40,7 @@ gulp.task('build-img', function () {
 
 // Build Fonts (Copy from src to build)
 gulp.task('build-fonts', function() {
-   gulp.src(SRC_DIR+'/fonts/*.*')
+   gulp.src(SRC_DIR+'/components/fontawesome/fonts/*.*')
    .pipe(gulp.dest(BUILD_DIR+'/fonts'));
 });
 

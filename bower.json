@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "skel": "https://github.com/n33/skel.old.git",
-    "jquery": "1.11.1"
+    "jquery": "1.11.1",
+    "fontawesome": "4.2.0"
   }
 }
