@@ -92,7 +92,8 @@ class IHM
 		// Initialisation du moteur de logs
 		$this->log = new \core\Log ();
 		
-		$this->startSession();
+		// Pas besoin de session pour l'instant
+		// $this->startSession();
 		
 		// Initialisation du moteur de templates Twig
 		\Twig_Autoloader::register();
@@ -129,7 +130,7 @@ class IHM
 		$this->log->Debug("[".__METHOD__."] Start de la session");
 		
 		session_id();
-		session_name("PHPSESSID_PORTAIL");
+		session_name("PHPSESSID_CB");
 		session_start();
 	}
 

@@ -520,7 +520,7 @@
 				.box .image.featured:last-child img {
 					border-radius: 0 0 6px 6px;
 				}
-
+.caption {text-align: center;font:0.8em;font-style: italic}
 /* Icon */
 
 	.icon {

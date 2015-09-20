@@ -3,6 +3,7 @@ RewriteCond %{SCRIPT_FILENAME} !-f
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteRule ^(.*)$ index.php [QSA,L]
 
+AddDefaultCharset utf-8
 
 ##### GZIP Compression
 # Commenter la ligne ci-dessous si plantage
