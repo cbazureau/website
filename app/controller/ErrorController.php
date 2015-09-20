@@ -20,7 +20,7 @@ class ErrorController
 		$ihm =  \core\IHM::getInstance();
 		$ihm->log->Debug("[".__METHOD__."] Debut de fonction");
 		header("HTTP/1.0 404 Not Found");
-		return $ihm->twig->loadTemplate('error.html')->render(array());
+		return $ihm->twig->loadTemplate('error.html')->render(array("title" => "Error 404"));
 	}
 
 }

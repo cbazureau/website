@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Controlleur home
+ * Controlleur contact
  * @package website
  */
 namespace controller;
-class HomeController
+class ContactController
 {
 	/**
 	 * Gestion du controlleur
@@ -16,7 +16,7 @@ class HomeController
 		$ihm = \core\IHM::getInstance();
 		$ihm->log->Debug("[".__METHOD__."] Debut de fonction");
 		
-		return $ihm->twig->loadTemplate('home.html')->render(array("fullbanner" => true));
+		return $ihm->twig->loadTemplate('contact.html')->render(array("title" => "Contactez-moi"));
 	}
 
 }

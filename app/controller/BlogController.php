@@ -16,7 +16,7 @@ class BlogController
 		$ihm = \core\IHM::getInstance();
 		$ihm->log->Debug("[".__METHOD__."] Debut de fonction");
 		
-		return $ihm->twig->loadTemplate('blog.html')->render(array());
+		return $ihm->twig->loadTemplate('blog.html')->render(array("title" => "Blog"));
 	}
 
 }
