@@ -26,6 +26,9 @@ La première fois il suffit de lancer :
 npm install
 gulp build
 ```
+### Optimisation
+Le site a été optimisé pour l'ensemble des devices (Responsive design) tout en gardant une bonne note de performance.
+![alt tag](https://raw.githubusercontent.com/cbazureau/website/master/www/cedric/src/img/blog/intro-gtmetrix-2.png)
 
 
 
