@@ -1,4 +1,8 @@
 RewriteEngine On
+RewriteCond %{HTTP_HOST} ^cedric\.bazureau\.com [NC]
+RewriteCond %{SERVER_PORT} 80 
+RewriteRule ^(.*)$ https://cedric.bazureau.com/$1 [R=301,L]
+
 RewriteCond %{SCRIPT_FILENAME} !-f
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteRule ^(.*)$ index.php [QSA,L]
